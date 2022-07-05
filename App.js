@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {SafeAreaView} from 'react-native';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import {Provider} from 'react-redux'
+import {persistor,store} from './redux/store'
+import Auth from './auth/auth';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff",marginTop: 15}}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Auth />
+      </PersistGate>
+    </Provider>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
